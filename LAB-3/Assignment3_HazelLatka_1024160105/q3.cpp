@@ -1,0 +1,98 @@
+#include <iostream>
+#define MAXLEN 50
+using namespace std;
+struct stack{
+    char arr[MAXLEN];
+    int top;
+};
+ 
+//initialize
+struct stack init(){
+    struct stack S;
+    S.top=-1;
+    return S;
+}
+//if stack is full
+int isFull( struct stack S){
+        return(S.top==MAXLEN-1);
+}
+//if stack is empty
+int isEmpty( struct stack S){
+        return(S.top==-1);
+}
+
+//push
+struct stack push(struct stack S, char data ){
+    if(isFull(S)){
+        cout<<"OVERFLOW CONDITION"<<endl;
+    }
+    else{
+        S.top=S.top+1;
+        S.arr[S.top]=data;
+    }
+    return S;
+}
+//pop
+struct stack pop(struct stack S ){
+    if(isEmpty(S)){
+        cout<<"UNDERFLOW CONDITION"<<endl;
+    }
+    else{
+        S.top=S.top-1;
+        
+    }
+    return S;
+    
+}
+
+//peek
+void peek( struct stack S){
+    if(isEmpty(S)){
+        cout<<"UNDERFLOW CONDITION";}
+    
+    else{
+    cout<<S.arr[S.top]<<endl;}
+    
+}
+//display
+void display(struct stack S){
+    for (int i=S.top; i>=0;i--){
+        cout<< S.arr[i]<<endl;
+    }
+}
+
+int main(){
+    struct stack S;
+    S=init();
+    cout<<"Enter the number of elements:  "<<endl;
+    int n;
+    cin>>n;
+    char a[n];
+  cout<<"Enter an expression:  ";
+  for(int i=0;i<=n-1;i++){
+  cin>>a[i];}
+  
+  for(int i=0;i<=n-1;i++){
+  cout<<a[i]<<endl;
+  }
+  struct stack s1;
+  s1=init();
+    for(int i=0; i<=n-1; i++){
+    if(a[i]=='('){
+        s1 = push(s1, '(');
+    }
+    else if(a[i]==')'){
+        s1 = pop(s1);
+    }
+}
+cout<<"Stack is : "<<endl;
+if(isEmpty(s1)){
+    cout<<"BALANCED"<<endl;
+    
+}
+else{
+    cout<<"UNBALANCED"<<endl;
+}
+
+}
+
